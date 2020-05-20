@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+
+<grammar xml:lang="en-gb"
+		 version="1.0"
+	  	 root="root"
+	  	 tag-format="semantics/1.0"
+	  	 mode="voice"
+		 xmlns="http://www.w3.org/2001/06/grammar">
+
+<!--
+
+Ver	Date		Author				Notes
+=======================================================================================================
+1.1	2020520		Sean Maddison		initial version
+									This allows a caller to say the day of the month, eg first, second
+									third, fourth, tenth, twentieth using natural ordinals.
+
+-->
+
+    <rule id="root" scope="public">
+       <item>
+          <ruleref uri="#OrdinalNums"/>          
+          <tag>
+             var ordinal_num = rules.latest();
+             out.SWI_meaning = ordinal_num;
+             out.dm_root     = ordinal_num;                    
+             out.MEANING     = ordinal_num;
+             out.dm_confirmation_mode = 'DEFAULT';
+             out.dm_confirm_string = 'digits:' + ordinal_num;
+             out.ResultType = 'custom';
+             out.RawAnswer = SWIrules.OrdinalNums.SWI_literal;
+             out.SlotData = '';      
+             
+          </tag>
+       </item>
+       
+    </rule>
+
+   <rule id="OrdinalNums">
+    <item>
+      <item repeat="0-1"> <ruleref uri="#PreFiller"/> </item>
+      <item>
+        <one-of>
+          <item><ruleref uri="#Ordinals"/> <tag> out = rules.latest() </tag></item>
+        </one-of>
+      </item>
+    </item>
+   </rule>  
+
+	<rule id="Ordinals">
+		<one-of>
+			<item>first <tag> out = 1</tag> </item>
+			<item>second <tag> out = 2</tag> </item>
+			<item>third <tag> out = 3</tag> </item>
+			<item>fourth <tag> out = 4</tag> </item>
+			<item>fifth <tag> out = 5</tag> </item>
+			<item>sixth <tag> out = 6</tag> </item>
+			<item>seventh <tag> out = 7</tag> </item>
+			<item>eighth <tag> out = 8</tag> </item>
+			<item>ninth <tag> out = 9</tag> </item>
+			<item>tenth  <tag> out = 10</tag> </item>
+			<item>eleventh  <tag> out = 11</tag> </item>
+			<item>twelfth  <tag> out = 12</tag> </item>
+			<item>thirteenth  <tag> out = 13</tag> </item>
+			<item>fourteenth  <tag> out = 14</tag> </item>
+			<item>fifteenth  <tag> out = 15</tag> </item>
+			<item>sixteenth  <tag> out = 16</tag> </item>
+			<item>seventeenth  <tag> out = 17</tag> </item>
+			<item>eighteenth  <tag> out = 18</tag> </item>
+			<item>nineteenth  <tag> out = 19</tag> </item>
+			<item>twentieth  <tag> out = 20</tag> </item>
+			<item>twenty first  <tag> out = 21</tag> </item>
+			<item>twenty second  <tag> out = 22</tag> </item>
+			<item>twenty third  <tag> out = 23</tag> </item>
+			<item>twenty fourth  <tag> out = 24</tag> </item>
+			<item>twenty fifth  <tag> out = 25</tag> </item>
+			<item>twenty sixth  <tag> out = 26</tag> </item>
+			<item>twenty seventh  <tag> out = 27</tag> </item>
+			<item>twenty eighth  <tag> out = 28</tag> </item>
+		</one-of>
+	</rule>
+
+   <rule id="PreFiller">
+      <one-of>
+         <item repeat="0-1"> the </item>
+      </one-of>
+   </rule>  
+</grammar>

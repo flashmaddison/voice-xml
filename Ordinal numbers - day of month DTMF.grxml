@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<grammar xml:lang="en-GB"
+		 mode="dtmf"
+		 version="1.0"
+		 root="root"
+		 xmlns="http://www.w3.org/2001/06/grammar"
+		 tag-format="semantics/1.0">
+
+<!--
+
+Ver Date      Author          Notes
+=======================================================================================================
+1.1 2020520   Sean Maddison   initial version
+
+-->
+
+    <rule id="root" scope="public">
+       <item>
+          <tag> var ordinal_num = ''</tag>
+          <item><ruleref uri="#Digits"/> <tag> rules.latest() </tag></item>
+      
+          <tag>
+             out.SWI_meaning = ordinal_num;
+             out.dm_root     = ordinal_num;                    
+             out.MEANING     = ordinal_num;
+             out.dm_confirmation_mode = 'DEFAULT';
+             out.dm_confirm_string = 'digits:' + ordinal_num;
+             out.ResultType = 'custom';
+             out.SlotData = '';  
+             delete ordinal_num;
+             
+          </tag>
+       </item>
+       
+    </rule>
+  
+  <rule id="Digits">
+    <one-of>
+        <item>1 <tag> out = 1 </tag></item>
+        <item>2 <tag> out = 2 </tag></item>
+        <item>3 <tag> out = 3 </tag></item>
+        <item>4 <tag> out = 4 </tag></item>
+        <item>5 <tag> out = 5 </tag></item>
+        <item>6 <tag> out = 6 </tag></item>
+        <item>7 <tag> out = 7 </tag></item>
+        <item>8 <tag> out = 8 </tag></item>
+        <item>9 <tag> out = 9 </tag></item>
+        <item>10 <tag> out = 10 </tag></item>
+        <item>11 <tag> out = 11 </tag></item>
+        <item>12 <tag> out = 12 </tag></item>
+        <item>13 <tag> out = 13 </tag></item>
+        <item>14 <tag> out = 14 </tag></item>
+        <item>15 <tag> out = 15 </tag></item>
+        <item>16 <tag> out = 16 </tag></item>
+        <item>17 <tag> out = 17 </tag></item>
+        <item>18 <tag> out = 18 </tag></item>
+        <item>19 <tag> out = 19 </tag></item>
+        <item>20 <tag> out = 20 </tag></item>
+        <item>21 <tag> out = 21 </tag></item>
+        <item>22 <tag> out = 22 </tag></item>
+        <item>23 <tag> out = 23 </tag></item>
+        <item>24 <tag> out = 24 </tag></item>
+        <item>25 <tag> out = 25 </tag></item>
+        <item>26 <tag> out = 26 </tag></item>
+        <item>27 <tag> out = 27 </tag></item>
+        <item>28 <tag> out = 28 </tag></item>
+
+    </one-of>
+  </rule>
+
+   
+</grammar>
